@@ -97,16 +97,25 @@ class RLDebugger:
         self.traces += ('action', action)
         if len(state.shape) > 1 and state.shape[1] > 1:
             state = state[0]
+        assert state.shape[0] == 4, state
         self.traces += ('state-x', state[0])
         self.traces += ('state-x-deriv', state[1])
         self.traces += ('state-theta', state[2])
         self.traces += ('state-theta-deriv', state[3])
-        if target is not None:
-            if len(target.shape) > 1 and target.shape[1] > 1:
-                target = target[0]
-            self.traces += ('value_estimation', target[action])
-            self.traces += ('value_prediction', target_val[action])
-            self.traces += ('bellman_residual', target[action] - target_val[action])
+        try:
+            if target is not None:
+                if len(target.shape) > 1 and target.shape[1] > 1:
+                    target = target[0]
+                if len(target_val.shape) > 1 and target_val.shape[1] > 1:
+                    target_val = target_val[0]
+                assert target.shape[0] == 2, state
+                self.traces += ('value_estimation', target[action])
+                self.traces += ('value_prediction', target_val[action])
+                self.traces += ('bellman_residual', target[action] - target_val[action])
+        except IndexError as IE:
+            print(target, action)
+            print(target_val, action)
+            raise IE
         self.traces += ('model_loss', loss)
 
     @staticmethod
@@ -143,7 +152,7 @@ class RLDebugger:
         self._plot('model_loss', color='red', **kwargs)
 
     def plot_actions(self, **kwargs):
-        self._plot('action', ma=True, **kwargs)
+        self._plot('action', ma=False, **kwargs)
 
     def plot_state(self, ax=None):
         ax = ax if ax is not None else self.get_ax()
