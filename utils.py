@@ -12,15 +12,47 @@ class RLEnvironment(object):
     Environment in which to play an agent.
     """
 
-    def __init__(self, envname='CartPole'):
+    def __init__(self, envname='CartPole', target_perf=200, target_window=100):
         self.env = gym.make("{}-v0".format(envname))
         self.state_size = self.env.observation_space.shape[0]
         self.action_space = self.env.action_space
         self.observation_space = self.env.observation_space
+        self.target_perf = target_perf
+        self.target_window = target_window
 
     def run(self, agent, episodes=100, print_delay=10, display_policy=False, seed=None):
         """
         Run the agent.
+
+        Pseudo-code:
+        ```
+            for i in 1..episodes {
+
+                start new episode
+
+                while episode not finished {
+
+                    ask agent to take action based on current state
+                    action is resolved by environment, returning reward and new state
+
+                    <opportunity to feedback agent with (state, reward, new state)>
+                    <opportunity to update agent parameters>
+
+                    if new state means agent failed {
+                        terminate episode
+                    }
+
+                }
+
+                <opportunity to update agent parameters again>
+
+                if last episodes show enough reward {
+                    declare task solved
+                }
+
+            }
+
+        ```
 
         :param agent: must implement `get_action(state)`
                       optionally can implement
@@ -33,8 +65,7 @@ class RLEnvironment(object):
         :return:
         """
         try:
-            last_episodes = min(100, episodes)
-            last_rewards = deque(maxlen=last_episodes)
+            last_rewards = deque(maxlen=self.target_window)
             for i in range(1, episodes+1):
                 if seed is not None:
                     self.env.seed(seed)
@@ -62,17 +93,15 @@ class RLEnvironment(object):
                                 i, total_reward)
                             )
                         break
-                perf = np.mean(last_rewards)
-                if perf >= 200:
+                if len(last_rewards) >= self.target_perf and np.mean(last_rewards) >= self.target_perf:
                     print("*" * 80)
                     print("CONGRATS !!! YOU JUST SOLVED CARTPOLE !!!")
                     print("*" * 80)
                     print("now you can try with envname='MsPacman-ram' ;)")
                     break
         finally:
-            perf = np.mean(last_rewards)
             print("Average Total Reward of last {} episodes: {}".format(
-                last_episodes, perf)
+                len(last_rewards), np.mean(last_rewards))
             )
             self.env.close()
 
