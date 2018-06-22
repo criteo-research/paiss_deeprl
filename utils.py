@@ -18,7 +18,7 @@ class RLEnvironment(object):
         self.action_space = self.env.action_space
         self.observation_space = self.env.observation_space
 
-    def run(self, agent, episodes=100, print_delay=10, display_policy=False):
+    def run(self, agent, episodes=100, print_delay=10, display_policy=False, seed=None):
         """
         Run the agent.
 
@@ -36,6 +36,8 @@ class RLEnvironment(object):
             last_episodes = min(100, episodes)
             last_rewards = deque(maxlen=last_episodes)
             for i in range(1, episodes+1):
+                if seed is not None:
+                    self.env.seed(seed)
                 state = self.env.reset()
                 state = np.reshape(state, [1, self.state_size])
                 total_reward = 0
@@ -66,6 +68,7 @@ class RLEnvironment(object):
                     print("CONGRATS !!! YOU JUST SOLVED CARTPOLE !!!")
                     print("*" * 80)
                     print("now you can try with envname='MsPacman-ram' ;)")
+                    break
         finally:
             perf = np.mean(last_rewards)
             print("Average Total Reward of last {} episodes: {}".format(
