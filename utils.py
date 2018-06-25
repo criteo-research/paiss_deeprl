@@ -12,7 +12,7 @@ class RLEnvironment(object):
     Environment in which to play an agent.
     """
 
-    def __init__(self, envname='CartPole', target_perf=200, target_window=100):
+    def __init__(self, envname='CartPole', target_perf=190, target_window=100):
         self.env = gym.make("{}-v0".format(envname))
         self.state_size = self.env.observation_space.shape[0]
         self.action_space = self.env.action_space
