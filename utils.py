@@ -93,7 +93,7 @@ class RLEnvironment(object):
                                 i, total_reward)
                             )
                         break
-                if len(last_rewards) >= self.target_perf and np.mean(last_rewards) >= self.target_perf:
+                if len(last_rewards) >= self.target_window and np.mean(last_rewards) >= self.target_perf:
                     print("*" * 80)
                     print("CONGRATS !!! YOU JUST SOLVED CARTPOLE !!!")
                     print("*" * 80)
