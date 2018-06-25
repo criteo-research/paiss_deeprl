@@ -37,5 +37,5 @@
     ```
 1. Verify everything is working
     ```
-    $ python3 -c "import keras, gym"
+    $ cd - && python3 -c "import keras, gym"
     ```
