@@ -64,6 +64,7 @@ class RLEnvironment(object):
         :param display_policy: display animation of policy
         :return:
         """
+        agent.traces = Trace()
         try:
             last_rewards = deque(maxlen=self.target_window)
             for i in range(1, episodes+1):
@@ -125,7 +126,7 @@ class RLDebugger:
     def __init__(self):
         self.traces = Trace()
 
-    def record(self, action, state, target, target_val, loss):
+    def record(self, action, state, target, target_val, loss, reward):
         self.traces += ('action', action)
         if len(state.shape) > 1 and state.shape[1] > 1:
             state = state[0]
@@ -143,7 +144,7 @@ class RLDebugger:
                 assert target.shape[0] == 2, state
                 self.traces += ('value_estimation', target[action])
                 self.traces += ('value_prediction', target_val[action])
-                self.traces += ('bellman_residual', target[action] - target_val[action])
+                self.traces += ('bellman_residual', target[action] - target_val[action] - reward)
         except IndexError as IE:
             print(target, action)
             print(target_val, action)
