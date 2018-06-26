@@ -1,6 +1,6 @@
 # PAISS Deep Reinforcement Learning Practical Session by Criteo Research
 
-## Environment
+## Setup Instructions
 
 1. Install Miniconda (cross-platform Python distribution): 
     - download & run installer from [here](https://conda.io/miniconda.html)
@@ -39,3 +39,20 @@
     ```
     $ cd - && python3 -c "import keras, gym"
     ```
+1. Pull the notebook with exercises
+    ```
+    $ git clone https://github.com/oddskool/paiss_deeprl
+    ```
+
+
+## Exercises (FOR STUDENTS)
+
+To run the notebook & start experimenting:
+```
+$ jupyter notebook exercises.ipynb
+```
+
+## Slides (FOR PRESENTER)
+```
+$ jupyter nbconvert slides.ipynb --to slides --post serve
+```
