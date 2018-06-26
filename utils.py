@@ -92,7 +92,7 @@ class RLEnvironment(object):
                         if (i % print_delay) == 0:
                             s = "Episode {}, Reward {}".format(i, total_reward)
                             if hasattr(agent, 'epsilon'):
-                                s += ", Epsilon {}" % agent.epsilon
+                                s += ", Epsilon {}".format(agent.epsilon)
                             print(s)
                         break
                 if len(last_rewards) >= self.target_window and np.mean(last_rewards) >= self.target_perf:
