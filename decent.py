@@ -1,6 +1,7 @@
 from utils import RLEnvironment, RLDebugger
 
 import random
+import numpy as np
 
 from keras.optimizers import Adam, RMSprop, SGD
 from keras.layers import Dense, Conv2D, Flatten, Input, Reshape, Lambda, Add, RepeatVector
