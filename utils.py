@@ -19,7 +19,6 @@ class RLEnvironment(object):
         self.observation_space = self.env.observation_space
         self.target_perf = target_perf
         self.target_window = target_window
-        self.gamma = 0.995
 
     def run(self, agent, episodes=100, print_delay=10, display_policy=False, seed=None):
         """
@@ -126,6 +125,7 @@ class RLDebugger:
 
     def __init__(self):
         self.traces = Trace()
+        self.gamma = 0.995
 
     def record(self, action, state, target, target_val, loss, reward):
         self.traces += ('action', action)
