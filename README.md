@@ -6,7 +6,7 @@
     - download & run installer from [here](https://conda.io/miniconda.html)
 1. Create environment for the session:
     ```
-    $ conda create --name paiss_deeprl python=3.6 Keras==2.2.0 tensorflow=1.7.0 matplotlib=2.2.2
+    $ conda create --name paiss_deeprl python=3.6 Keras==2.2.0 tensorflow matplotlib
     ```
 1. Activate environment:
     ```
