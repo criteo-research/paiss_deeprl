@@ -7,6 +7,7 @@ from keras.layers import Dense, Conv2D, Flatten, Input, Reshape, Lambda, Add, Re
 from keras.models import Sequential, Model
 from keras import backend as K
 
+
 class DQNAgent(RLDebugger):
     def __init__(self, observation_space, action_space):
         RLDebugger.__init__(self)
@@ -52,4 +53,6 @@ class DQNAgent(RLDebugger):
 
         # and do the model fit!
         loss = self.model.fit(state, target, verbose=0).history['loss'][0]
-        self.record(action, state, target, target_val, loss, reward)        
+        self.record(action, state, target, target_val, loss, reward)
+
+
