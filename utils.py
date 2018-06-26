@@ -90,9 +90,10 @@ class RLEnvironment(object):
                         if hasattr(agent, 'update_target_model'):
                             agent.update_target_model()
                         if (i % print_delay) == 0:
-                            print("Episode {}, Total reward {}".format(
-                                i, total_reward)
-                            )
+                            s = "Episode {}, Reward {}".format(i, total_reward)
+                            if hasattr(agent, 'epsilon'):
+                                s += ", Epsilon {}" % agent.epsilon
+                            print(s)
                         break
                 if len(last_rewards) >= self.target_window and np.mean(last_rewards) >= self.target_perf:
                     print("*" * 80)
@@ -101,7 +102,7 @@ class RLEnvironment(object):
                     print("now you can try with envname='MsPacman-ram' ;)")
                     break
         finally:
-            print("Average Total Reward of last {} episodes: {}".format(
+            print("Average Reward of last {} episodes: {}".format(
                 len(last_rewards), np.mean(last_rewards))
             )
             self.env.close()
