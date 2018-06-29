@@ -4,6 +4,8 @@ The repo contains all the material needed for a 1,5 hour practical session on De
 
 The idea is to practice basic techniques so as to solve toy problems and also introduce useful techniques and diagnostic tools that allow to ultimately solve harder problems.
 
+Authors that developed this educational material are cited in the AUTHORS file.
+
 ## Setup Instructions
 
 1. Install Miniconda (cross-platform Python distribution):
