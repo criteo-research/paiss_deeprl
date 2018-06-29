@@ -1,8 +1,12 @@
 # PAISS Deep Reinforcement Learning Practical Session by Criteo Research
 
+The repo contains all the material needed for a 1,5 hour practical session on Deep Reinforcement Learning.
+
+The idea is to practice basic techniques so as to solve toy problems and also introduce useful techniques and diagnostic tools that allow to ultimately solve harder problems.
+
 ## Setup Instructions
 
-1. Install Miniconda (cross-platform Python distribution): 
+1. Install Miniconda (cross-platform Python distribution):
     - download & run installer from [here](https://conda.io/miniconda.html)
 1. Create environment for the session:
     ```
@@ -28,7 +32,7 @@
     - Windows
         - we recommend creating a Linux virtual machine
         - you could try [this answer on StackOverflom](https://stackoverflow.com/questions/42605769/openai-gym-atari-on-windows) at your own risk
-        
+
 1. Gym RL toolkit install
     ```
     $ git clone https://github.com/openai/gym.git
