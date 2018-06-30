@@ -47,7 +47,7 @@ Authors that developed this educational material are cited in the AUTHORS file.
     ```
 1. Pull the notebook with exercises
     ```
-    $ git clone https://github.com/oddskool/paiss_deeprl
+    $ git clone https://github.com/criteo-research/paiss_deeprl.git    
     ```
 
 
