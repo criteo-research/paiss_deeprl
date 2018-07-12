@@ -58,6 +58,10 @@ To run the notebook & start experimenting:
 $ jupyter notebook exercises.ipynb
 ```
 
+Note that there is also a PyTorch version : see `exercises_pytorch.ipynb`.
+If you wish to use it you'll need to `conda install pytorch torchvision -c pytorch`. 
+
+
 ## Slides (FOR PRESENTER)
 ```
 $ jupyter nbconvert slides.ipynb --to slides --post serve
