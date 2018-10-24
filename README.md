@@ -1,4 +1,6 @@
-# PAISS Deep Reinforcement Learning Practical Session by Criteo Research
+# PAISS Deep Reinforcement Learning Practical Session by Criteo AI LAb
+
+<img src="images/criteoAILab.png"/>
 
 The repo contains all the material needed for a 1,5 hour practical session on Deep Reinforcement Learning.
 
